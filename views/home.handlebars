@@ -1,0 +1,17 @@
+{{#each articles}}
+<h3>{{this.headline}}</h3>
+<p>{{this.summary}}</p>
+<a href={{this.link}}>Link</a>
+<button class="save" value={{this._id}}>Save Article</button>
+{{/each}}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.save', function (event) {
+            let id = $(this).val();
+            axios.post('/save', { id: id })
+        })
+    })
+</script>
