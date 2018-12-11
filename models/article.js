@@ -7,7 +7,7 @@ const articleSchema = new mongoose.Schema({
 });
 
 const article = mongoose.model('article', articleSchema);
-const saved_article = mongoose.model('article', articleSchema);
+const saved_article = mongoose.model('saved_article', articleSchema);
 
 module.exports = {
     article,

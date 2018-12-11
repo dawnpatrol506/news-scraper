@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News Scraper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>{{title}}</title>
 </head>
+
 <body>
-    <h1>Newsy Stuff</h1>
-    {{{body}}}
+    <nav class="black">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">News Scraper</a>
+            <a href="#" data-target="side-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#" class="scrape-articles">Scrape Articles</a></li>
+                <li><a href="/savedarticles">View Saved Articles</a></li>
+                <li><button class="btn btn-medium blue darken-3 clear-articles">Clear Articles</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="side-nav">
+        <li><a href="#" class="scrape-articles">Scrape Articles</a></li>
+        <li><a href="/savedarticles">View Saved Articles</a></li>
+        <li><a class="btn btn-medium blue darken-3 clear-articles">Clear Articles</a></li>
+    </ul>
+
+    <div class="container">
+        {{{body}}}
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('.scrape-articles').on('click', function(e){
+                axios.get('/scrape')
+                    .then(() => {
+                        location = '/';
+                    })
+            })
+
+            $('.clear-articles').on('click', function(e) {
+                axios.delete('/clearArticles')
+                    .then(() => {
+                        location = '/';
+                    })
+            })
+        })
+    </script>
 </body>
+
 </html>
